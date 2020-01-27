@@ -1,6 +1,6 @@
-<div class="ui container form" [ngClass]="loading ? 'loading' : 'mt-3'">
+<div [ngClass]="loading ? 'loading' : 'mt-3'" class="ui container form">
   <div class="ui divided items">
-    <div class="ui item" *ngFor="let item of repoList">
+    <div *ngFor="let item of repoList" class="ui item">
       <div class="ui tiny image">
         <img [src]="item.owner.avatar_url" alt="avatar of {{item.owner.login}}">
       </div>
@@ -26,15 +26,16 @@
     </div>
   </div>
 
-  <div class="d-flex flex-row justify-content-around mt-3 pb-3" *ngIf="repoList.length > 0">
-    <div class="ui orange animated button" tabindex="0" (click)="doPagination(false)" [ngClass]="currentPage < 2 ? 'disabled' : ''">
+  <div *ngIf="repoList.length > 0" class="d-flex flex-row justify-content-around mt-3 pb-3">
+    <div (click)="doPagination(false)" [ngClass]="currentPage < 2 ? 'disabled' : ''" class="ui orange animated button" tabindex="1">
       <div class="visible content">Previous</div>
       <div class="hidden content">
         <i class="left arrow icon"></i>
       </div>
     </div>
 
-    <div class="ui violet animated button" tabindex="0" (click)="doPagination(true)">
+    <div (click)="doPagination(true)" [ngClass]="currentPage * repoList.length > 1000 ? 'disabled' : ''" class="ui violet animated button"
+         tabindex="0">
       <div class="visible content">Next</div>
       <div class="hidden content">
         <i class="right arrow icon"></i>

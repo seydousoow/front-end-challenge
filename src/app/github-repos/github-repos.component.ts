@@ -41,6 +41,13 @@ export class GithubReposComponent implements OnInit, OnDestroy {
     return `${difference} day${Number(difference) > 1 ? 's' : ''}`;
   }
 
+  doPagination(goNext: boolean) {
+    goNext ? ++this.currentPage : --this.currentPage;
+    this.repoList.splice(0);
+    this.loading = true;
+    this.getRepositories();
+  }
+
   private getRepositories() {
     const query = `created:>${GithubReposComponent.getDateRange()}`;
     this.subs = this.githubService.getRepositories(query, this.currentPage)
@@ -50,12 +57,5 @@ export class GithubReposComponent implements OnInit, OnDestroy {
         this.loading = false;
       }, error => {
       });
-  }
-
-  doPagination(goNext: boolean) {
-    goNext ? ++this.currentPage : --this.currentPage;
-    this.repoList.splice(0);
-    this.loading = true;
-    this.getRepositories();
   }
 }
