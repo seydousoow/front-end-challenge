@@ -1,6 +1,9 @@
-.ui.container {
-  min-height: 100vh;
-  /*min-width: 100%;*/
+.ui.container.form {
+  min-height: 100vh !important;
+}
+
+.ui.container.form.loading {
+  background-color: #333333;
 }
 
 .ui.basic.label > * {

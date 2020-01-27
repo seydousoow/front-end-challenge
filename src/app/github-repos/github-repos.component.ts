@@ -12,7 +12,7 @@ import {GithubRepoModel} from '../models/github/github-repo.model';
 })
 export class GithubReposComponent implements OnInit, OnDestroy {
 
-  public loading = false;
+  public loading = true;
   public repoList = new Array<GithubRepoModel>();
   private subs = new Subscription();
   private currentPage = 1;
@@ -25,7 +25,7 @@ export class GithubReposComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getRepositories();
+    setTimeout(() => this.getRepositories(), 4000);
   }
 
   ngOnDestroy(): void {
@@ -42,16 +42,20 @@ export class GithubReposComponent implements OnInit, OnDestroy {
   }
 
   private getRepositories() {
-    this.loading = false;
     const query = `created:>${GithubReposComponent.getDateRange()}`;
     this.subs = this.githubService.getRepositories(query, this.currentPage)
       .pipe(retry(2))
       .subscribe(result => {
         this.repoList = result.items;
-        // this.repoList.forEach(x => {
-        //   this.getAvatar(x.owner.id, x.owner.avatar_url);
-        // });
+        this.loading = false;
       }, error => {
       });
+  }
+
+  doPagination(goNext: boolean) {
+    goNext ? ++this.currentPage : --this.currentPage;
+    this.repoList.splice(0);
+    this.loading = true;
+    this.getRepositories();
   }
 }

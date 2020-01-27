@@ -1,4 +1,4 @@
-<div class="ui container" [ngClass]="loading ? 'loading' : ''">
+<div class="ui container form" [ngClass]="loading ? 'loading' : 'mt-3'">
   <div class="ui divided items">
     <div class="ui item" *ngFor="let item of repoList">
       <div class="ui tiny image">
@@ -22,6 +22,22 @@
           </div>
           <div class="submission">Submitted {{getTimeInterval(item.pushed_at)}} ago by {{item.owner.login}}</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row justify-content-around mt-3 pb-3" *ngIf="repoList.length > 0">
+    <div class="ui orange animated button" tabindex="0" (click)="doPagination(false)" [ngClass]="currentPage < 2 ? 'disabled' : ''">
+      <div class="visible content">Previous</div>
+      <div class="hidden content">
+        <i class="left arrow icon"></i>
+      </div>
+    </div>
+
+    <div class="ui violet animated button" tabindex="0" (click)="doPagination(true)">
+      <div class="visible content">Next</div>
+      <div class="hidden content">
+        <i class="right arrow icon"></i>
       </div>
     </div>
   </div>
