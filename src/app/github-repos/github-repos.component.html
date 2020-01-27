@@ -1,0 +1,28 @@
+<div class="ui container" [ngClass]="loading ? 'loading' : ''">
+  <div class="ui divided items">
+    <div class="ui item" *ngFor="let item of repoList">
+      <div class="ui tiny image">
+        <img [src]="item.owner.avatar_url" alt="avatar of {{item.owner.login}}">
+      </div>
+      <div class="content">
+        <a class="header">{{item.name | titlecase}}</a>
+        <div class="description">
+          <p>{{item.description}}</p>
+        </div>
+        <div class="extra d-flex flex-row align-items-center">
+          <div class="ui basic label">
+            <i class="orange star icon mr-0"></i>
+            Star
+            <div class="detail h-6">{{item.stargazers_count}}</div>
+          </div>
+          <div class="ui basic label">
+            <i class="red icon exclamation circle mr-0"></i>
+            Issues
+            <div class="detail">{{item.open_issues_count}}</div>
+          </div>
+          <div class="submission">Submitted {{getTimeInterval(item.pushed_at)}} ago by {{item.owner.login}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

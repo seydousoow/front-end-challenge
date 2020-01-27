@@ -1,0 +1,22 @@
+.ui.container {
+  min-height: 100vh;
+  /*min-width: 100%;*/
+}
+
+.ui.basic.label > * {
+  font-size: 13px;
+}
+
+.extra > .ui.basic.label:first-child {
+  color: #F2711C;
+}
+
+.extra > .ui.basic.label:last-child {
+  color: #db2828;
+}
+
+.submission {
+  font-size: 15px;
+  font-weight: 400;
+  color: black;
+}

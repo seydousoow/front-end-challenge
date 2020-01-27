@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "assets/fonts/Ubuntu/stylesheet.css";
+
+* {
+  font-size: 14px;
+  font-family: Ubuntu, Roboto, sans-serif;
+}

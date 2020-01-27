@@ -1,4 +1,5 @@
 export class GithubRepoOwnerModel {
+
   login: string;
   id: number;
   node_id: string;
@@ -17,5 +18,4 @@ export class GithubRepoOwnerModel {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-}
 }
