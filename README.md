@@ -25,5 +25,5 @@ In order to run this application, please follow the following step:
 
 You can build the app by typing **ng build**. The app will the reside into into the a newly created folder named **dist/**. Add the **--prod** flag to the command if you want a production build.
 
-To get more help on the Angular CLI use ng help or go check out the Angular CLI README.
+To get more help on the Angular CLI use ng help or go check out [the Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
