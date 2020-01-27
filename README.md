@@ -1,27 +1,29 @@
-# FrontEndChallenge
+Front end test challenge
+=======================
+---
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
+This is a small app that shows the most favorited repositories on github within the last 30 days from the current date. The data are collected directly from the Github Search API.
 
-## Development server
+Prerequisites
+------------
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+*No additional library is needed to run this app.*
 
-## Code scaffolding
+Libraries
+---------
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Date-fns** is used in this project to manage the Date object. It is a modern javascript library that contains a set of functions. It is light (~ 45 KB), fast and helps to solve many problems like mutability and conversion. Date-fns also helps to reduce the size of the bundle because we import only the functions that need instead of importing everything, even the unused functions.
 
-## Build
+Run the app
+-----------
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The project have been generated using angular cli version 8.
+In order to run this application, please follow the following step:
+  - **Clone or download the repository**
+  - **Unzip the folder and open in into your editor**
+  - **Run `ng serve` into your console, then navigate to `http://localhost:4200`.**
 
-## Running unit tests
+You can build the app by typing **ng build**. The app will the reside into into the a newly created folder named **dist/**. Add the **--prod** flag to the command if you want a production build.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To get more help on the Angular CLI use ng help or go check out the Angular CLI README.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
