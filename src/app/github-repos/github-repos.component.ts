@@ -4,6 +4,7 @@ import {differenceInDays, differenceInHours, format, parseISO, subDays} from 'da
 import {Subscription} from 'rxjs';
 import {retry} from 'rxjs/operators';
 import {GithubRepoModel} from '../models/github/github-repo.model';
+import {GlobalErrorHandler} from '../core/errors/global-error-handler';
 
 @Component({
   selector: 'app-github-repos',
@@ -25,13 +26,20 @@ export class GithubReposComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    setTimeout(() => this.getRepositories(), 4000);
+    this.getRepositories();
   }
 
+  /*
+   * Unsubscription to avoid memory leak
+   */
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
 
+  /*
+   * Get the number of days between the last time a repository has been updated and the moment when the repository is fetched.
+   * if the repository has been updated less that 24 hours, return the number of hours.
+   */
   public getTimeInterval(pushedAt: Date) {
     let difference = differenceInDays(new Date(), parseISO(pushedAt.toString()));
     if (Number(difference) === 0) {
@@ -41,7 +49,8 @@ export class GithubReposComponent implements OnInit, OnDestroy {
     return `${difference} day${Number(difference) > 1 ? 's' : ''}`;
   }
 
-  doPagination(goNext: boolean) {
+  // update the current page according to the clicked button and fetch the repositories
+  public doPagination(goNext: boolean) {
     goNext ? ++this.currentPage : --this.currentPage;
     this.repoList.splice(0);
     this.loading = true;
@@ -55,7 +64,6 @@ export class GithubReposComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         this.repoList = result.items;
         this.loading = false;
-      }, error => {
-      });
+      }, error => console.log(new GlobalErrorHandler().handleError(error)));
   }
 }

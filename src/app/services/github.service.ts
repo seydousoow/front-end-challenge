@@ -24,8 +24,4 @@ export class GithubService {
     return this.http.get<any>(this.url, {params});
   }
 
-  public getAvatars(url: string) {
-    return this.http.get(url);
-  }
-
 }
